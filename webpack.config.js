@@ -12,17 +12,14 @@ module.exports = {
   
   entry: {
     app: './src/app.ts',
-    'angular-router': [
-      '@angular/router/angular1/angular_1_router.js'
-    ],
     vendor: [
       'lodash-compat',
       'immutable',
       'rx',
       'angular',
       'angular-ui-router',
-      'reflect-metadata',
-      
+      //'reflect-metadata',
+      '@angular/router/angular1/angular_1_router.js',
       'koast-angular',
       'basscss/css/basscss.css',
       'font-awesome/css/font-awesome.css'

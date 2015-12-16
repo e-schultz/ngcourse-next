@@ -1,60 +1,79 @@
 import 'angular-ui-router';
 import 'lodash-compat';
 import 'koast-angular';
-import 'reflect-metadata';
+
 import 'basscss/css/basscss.css';
 import 'font-awesome/css/font-awesome.css';
 import '../css/styles.css';
-
+import {Component, View} from 'angular2/core';
 import * as angular from 'angular';
 import * as Rx from 'rx';
 
 //import '@angular/router/angular1/ng_route_shim.js';
+//import {UpgradeAdapter} from 'angular2/upgrade';
 import '@angular/router/angular1/angular_1_router';
-import {UpgradeAdapter} from 'angular2/upgrade';
+//import 'reflect-metadata';
 
-let adapter = new UpgradeAdapter();
+//let adapter = new UpgradeAdapter();
 import {
-  ServerService, 
-  RouterService, 
-  RouterConfig
+ServerService,
+RouterService,
+RouterConfig
 } from './services';
 
 import {
-  TasksStore, 
-  UsersStore, 
-  AuthenticationStore
+TasksStore,
+UsersStore,
+AuthenticationStore
 } from './stores';
 
 import {
-  LoginFormComponent,
-  TaskListComponent,
-  TaskComponent,
-  TaskAddComponent,
-  TaskEditComponent,
-  MainComponent
+LoginFormComponent,
+TaskListComponent,
+TaskComponent,
+TaskAddComponent,
+TaskEditComponent,
+MainComponent
 } from './components';
 
 import {
-  TaskActions, 
-  UserActions, 
-  AuthenticationActions
+TaskActions,
+UserActions,
+AuthenticationActions
 } from './actions';
 
 
-angular.module('ngcourse.router', ['ngComponentRouter'])
-.directive('app',() => {
+angular.module('ngcourse.router', ['ngComponentRouter','app.home'])
+  .directive('app', () => {
+    return {
+      restrict: 'E',
+      template: `<ng-outlet><ng-outlet>`,
+      controller: function AppControllerDirective($router) {
+        $router.config([
+          {
+            path: '/',
+            component: 'home',
+            as: 'Home'
+          }
+        ]);
+
+      }
+    };
+  });
+
+angular.module('app.home', [])
+.directive('home', function() {
   return {
-    restrict: 'E',
-    template: ` <ng-outlet></ng-outlet>`,
-    controller: ['$router', function AppControllerDirective($router : any) {
-      console.log('hello');
-      debugger;
-    }]
-  };  
+    template: 'Hello {{ home.text }}',
+    controller: function HomeController() {
+      this.text = 'World!';
+    },
+    controllerAs: 'home'
+  }
 });
-  //.config(RouterConfig)
-  //.service('router', RouterService);
+
+//.config(RouterConfig)
+//.service('router', RouterService);
 
 angular.module('ngcourse.authentication', [])
   .service('authenticationStore', AuthenticationStore)
@@ -67,17 +86,17 @@ angular.module('ngcourse.tasks', [])
   .service('tasksStore', TasksStore)
   .service('tasksActions', TaskActions)
   .directive(
-    TaskListComponent.selector,
-    TaskListComponent.directiveFactory)
+  TaskListComponent.selector,
+  TaskListComponent.directiveFactory)
   .directive(
-    TaskComponent.selector,
-    TaskComponent.directiveFactory)
+  TaskComponent.selector,
+  TaskComponent.directiveFactory)
   .directive(
-    TaskAddComponent.selector,
-    TaskAddComponent.directiveFactory)
+  TaskAddComponent.selector,
+  TaskAddComponent.directiveFactory)
   .directive(
-    TaskEditComponent.selector,
-    TaskEditComponent.directiveFactory);
+  TaskEditComponent.selector,
+  TaskEditComponent.directiveFactory);
 
 angular.module('ngcourse.users', [])
   .service('usersStore', UsersStore)
@@ -98,8 +117,8 @@ angular.module('ngcourse', [
   'ngcourse.dispatcher',
   'koast'])
   .directive(
-    MainComponent.selector,
-    MainComponent.directiveFactory)
+  MainComponent.selector,
+  MainComponent.directiveFactory)
   .constant('API_BASE_URL', 'http://ngcourse.herokuapp.com')
   .run((koast, API_BASE_URL) => {
     koast.init({
@@ -117,4 +136,4 @@ angular.module('ngcourse', [
 angular.element(document).ready(function() {
   angular.bootstrap(document, ['ngcourse']);
 });
-adapter.bootstrap(document.body, ['ngcourse']);
+//adapter.bootstrap(document.body, ['ngcourse']);
