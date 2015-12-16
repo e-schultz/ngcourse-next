@@ -9,7 +9,7 @@ import '../css/styles.css';
 import * as angular from 'angular';
 import * as Rx from 'rx';
 import {UpgradeAdapter} from 'angular2/upgrade';
-
+import '@angular/router/angular1/angular_1_router.js';
 
 let adapter = new UpgradeAdapter();
 import {
@@ -84,6 +84,7 @@ angular.module('ngcourse', [
   'ngcourse.server',
   'ngcourse.router',
   'ngcourse.dispatcher',
+  'ngComponentRouter',
   'koast'])
   .directive(
     MainComponent.selector,
