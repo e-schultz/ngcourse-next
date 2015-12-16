@@ -70,6 +70,11 @@ angular.module('ngcourse.router', ['ngComponentRouter','app.home'])
             path: '/tasks/add',
             component: 'tasks-add',
             as: 'TasksAdd'
+          },
+          {
+            path: '/tasks/:id',
+            component: 'tasks-details',
+            as: 'TasksDetails'
           }
         ]);
 
@@ -88,8 +93,10 @@ angular.module('app.home', ['ngcourse.main'])
     template: '<ngc-tasks></ngc-tasks>'
   };
 }).directive('tasksAdd',() => {
-  return { template: '<ngc-task-add></ngc-task-add' }
-});
+  return { template: '<ngc-task-add></ngc-task-add>' }
+}).directive('tasksDetails',() => {
+  return { template: '<ngc-task-edit></ngc-task-edit>' }
+})
 
 
 
