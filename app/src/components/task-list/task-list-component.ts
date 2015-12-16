@@ -26,7 +26,7 @@ export class TaskListComponent {
 
   static $inject = [
     '$scope',
-    'router',
+    '$router',
     'authenticationStore',
     'tasksStore',
     'usersStore'
@@ -34,7 +34,7 @@ export class TaskListComponent {
 
   constructor(
     private $scope: ng.IScope,
-    private router: RouterService,
+    private $router: any,
     private authenticationStore: AuthenticationStore,
     private tasksStore: TasksStore,
     private usersStore: UsersStore

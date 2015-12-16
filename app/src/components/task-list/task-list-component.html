@@ -9,7 +9,10 @@
       <p class="h1 mb0">We've Got {{ctrl.tasks.length}} Tasks</p>
     </div>
   </header>
-  <div class="mt4 mb4" ui-view="actionArea"></div>
+  <!--<div class="mt4 mb4" ui-view="actionArea"></div>-->
+  <div class="mt4 mb4">
+    <ng-outlet></ng-outlet>
+  </div>
   <div class="md-col-8 mx-auto rounded tasks-list mb4">
     <ngc-task ng-repeat="task in ctrl.tasks" 
       task="task" 

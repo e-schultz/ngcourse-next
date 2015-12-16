@@ -1,3 +1,8 @@
+// note
+// weird issue - https://github.com/angular/angular/issues/5292
+// had to modify the angular_1_router file myself
+
+import 'reflect-metadata';
 import 'angular-ui-router';
 import 'lodash-compat';
 import 'koast-angular';
@@ -10,11 +15,11 @@ import * as angular from 'angular';
 import * as Rx from 'rx';
 
 //import '@angular/router/angular1/ng_route_shim.js';
-//import {UpgradeAdapter} from 'angular2/upgrade';
+import {UpgradeAdapter} from 'angular2/upgrade';
 import '@angular/router/angular1/angular_1_router';
-//import 'reflect-metadata';
 
-//let adapter = new UpgradeAdapter();
+
+let adapter = new UpgradeAdapter();
 import {
 ServerService,
 RouterService,
@@ -53,7 +58,18 @@ angular.module('ngcourse.router', ['ngComponentRouter','app.home'])
           {
             path: '/',
             component: 'home',
-            as: 'Home'
+            as: 'Home',
+            useAsDefault: true
+          },
+          {
+            path: '/tasks',
+            component: 'tasks',
+            as: 'Tasks'
+          },
+          {
+            path: '/tasks/add',
+            component: 'tasks-add',
+            as: 'TasksAdd'
           }
         ]);
 
@@ -61,20 +77,29 @@ angular.module('ngcourse.router', ['ngComponentRouter','app.home'])
     };
   });
 
-angular.module('app.home', [])
-.directive('home', function() {
+angular.module('app.home', ['ngcourse.main'])
+.directive('home', () => {
   return {
-    template: 'Hello {{ home.text }}',
-    controller: function HomeController() {
-      this.text = 'World!';
-    },
-    controllerAs: 'home'
-  }
+    template: '<ngc-main></ngc-main>',
+  };
+}).directive('tasks',() => {
+  return {
+    
+    template: '<ngc-tasks></ngc-tasks>'
+  };
+}).directive('tasksAdd',() => {
+  return { template: '<ngc-task-add></ngc-task-add' }
 });
+
+
 
 //.config(RouterConfig)
 //.service('router', RouterService);
 
+angular.module('ngcourse.main',[]).directive(
+  MainComponent.selector,
+  MainComponent.directiveFactory);
+  
 angular.module('ngcourse.authentication', [])
   .service('authenticationStore', AuthenticationStore)
   .service('authenticationActions', AuthenticationActions)
@@ -116,9 +141,7 @@ angular.module('ngcourse', [
   'ngcourse.router',
   'ngcourse.dispatcher',
   'koast'])
-  .directive(
-  MainComponent.selector,
-  MainComponent.directiveFactory)
+  
   .constant('API_BASE_URL', 'http://ngcourse.herokuapp.com')
   .run((koast, API_BASE_URL) => {
     koast.init({
@@ -133,7 +156,9 @@ angular.module('ngcourse', [
     });
   });
 
+/*
 angular.element(document).ready(function() {
   angular.bootstrap(document, ['ngcourse']);
 });
-//adapter.bootstrap(document.body, ['ngcourse']);
+*/
+adapter.bootstrap(document.body, ['ngcourse']);

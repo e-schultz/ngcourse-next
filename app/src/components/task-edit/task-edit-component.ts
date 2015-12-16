@@ -25,7 +25,7 @@ export class TaskEditComponent {
     'tasksActions',
     'tasksStore',
     '$stateParams',
-    'router'
+    '$router'
   ];
   
   constructor(
@@ -33,7 +33,7 @@ export class TaskEditComponent {
     private tasksActions: TaskActions,
     private tasksStore: TasksStore,
     private $stateParams,
-    private router: RouterService
+    private $router: any
   ) {
     let tasksSubscription = 
       this.tasksStore.tasksSubject.subscribe(
