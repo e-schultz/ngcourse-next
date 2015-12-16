@@ -52,7 +52,7 @@ angular.module('ngcourse.router', ['ngComponentRouter','app.home'])
   .directive('app', () => {
     return {
       restrict: 'E',
-      template: `<ng-outlet><ng-outlet>`,
+      template: `<ngc-main></ngc-main><ng-outlet><ng-outlet>`,
       controller: function AppControllerDirective($router) {
         $router.config([
           {
@@ -80,7 +80,7 @@ angular.module('ngcourse.router', ['ngComponentRouter','app.home'])
 angular.module('app.home', ['ngcourse.main'])
 .directive('home', () => {
   return {
-    template: '<ngc-main></ngc-main>',
+    template: '',
   };
 }).directive('tasks',() => {
   return {
