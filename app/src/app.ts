@@ -8,8 +8,10 @@ import '../css/styles.css';
 
 import * as angular from 'angular';
 import * as Rx from 'rx';
+
+//import '@angular/router/angular1/ng_route_shim.js';
+import '@angular/router/angular1/angular_1_router';
 import {UpgradeAdapter} from 'angular2/upgrade';
-import '@angular/router/angular1/angular_1_router.js';
 
 let adapter = new UpgradeAdapter();
 import {
@@ -40,9 +42,19 @@ import {
 } from './actions';
 
 
-angular.module('ngcourse.router', ['ui.router'])
-  .config(RouterConfig)
-  .service('router', RouterService);
+angular.module('ngcourse.router', ['ngComponentRouter'])
+.directive('app',() => {
+  return {
+    restrict: 'E',
+    template: ` <ng-outlet></ng-outlet>`,
+    controller: ['$router', function AppControllerDirective($router : any) {
+      console.log('hello');
+      debugger;
+    }]
+  };  
+});
+  //.config(RouterConfig)
+  //.service('router', RouterService);
 
 angular.module('ngcourse.authentication', [])
   .service('authenticationStore', AuthenticationStore)
@@ -84,7 +96,6 @@ angular.module('ngcourse', [
   'ngcourse.server',
   'ngcourse.router',
   'ngcourse.dispatcher',
-  'ngComponentRouter',
   'koast'])
   .directive(
     MainComponent.selector,
@@ -103,8 +114,7 @@ angular.module('ngcourse', [
     });
   });
 
-//angular.element(document).ready(function() {
-//  angular.bootstrap(document, ['ngcourse']);
-//});
-
+angular.element(document).ready(function() {
+  angular.bootstrap(document, ['ngcourse']);
+});
 adapter.bootstrap(document.body, ['ngcourse']);
