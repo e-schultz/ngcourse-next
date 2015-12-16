@@ -1,14 +1,17 @@
 import 'angular-ui-router';
 import 'lodash-compat';
 import 'koast-angular';
-
+import 'reflect-metadata';
 import 'basscss/css/basscss.css';
 import 'font-awesome/css/font-awesome.css';
 import '../css/styles.css';
 
 import * as angular from 'angular';
 import * as Rx from 'rx';
+import {UpgradeAdapter} from 'angular2/upgrade';
 
+
+let adapter = new UpgradeAdapter();
 import {
   ServerService, 
   RouterService, 
@@ -99,6 +102,8 @@ angular.module('ngcourse', [
     });
   });
 
-angular.element(document).ready(function() {
-  angular.bootstrap(document, ['ngcourse']);
-});
+//angular.element(document).ready(function() {
+//  angular.bootstrap(document, ['ngcourse']);
+//});
+
+adapter.bootstrap(document.body, ['ngcourse']);
