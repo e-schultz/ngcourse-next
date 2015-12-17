@@ -17,12 +17,12 @@ export class TaskAddComponent {
   };
   
   static $inject = [
-    '$router',
+    'router',
     'tasksActions'
   ];
   
   constructor(
-    private $router: any,
+    private router: any,
     private tasksActions: TaskActions
    ) {}
 

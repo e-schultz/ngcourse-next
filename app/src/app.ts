@@ -13,13 +13,18 @@ import '../css/styles.css';
 import {Component, View} from 'angular2/core';
 import * as angular from 'angular';
 import * as Rx from 'rx';
-
-//import '@angular/router/angular1/ng_route_shim.js';
 import {UpgradeAdapter} from 'angular2/upgrade';
-import '@angular/router/angular1/angular_1_router';
+//import {Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig, RouteParams} from 'angular2/router';
+
+import '@angular/router/angular1/ng_route_shim'
+import  '@angular/router/angular1/angular_1_router';
+//console.log('what the duce',x);
+
+
 
 
 let adapter = new UpgradeAdapter();
+
 import {
 ServerService,
 RouterService,
@@ -48,7 +53,7 @@ AuthenticationActions
 } from './actions';
 
 
-angular.module('ngcourse.router', ['ngComponentRouter','app.home'])
+angular.module('ngcourse.router', ['ngComponentRouter','ngRouteShim','app.home'])
   .directive('app', () => {
     return {
       restrict: 'E',
@@ -73,14 +78,14 @@ angular.module('ngcourse.router', ['ngComponentRouter','app.home'])
           },
           {
             path: '/tasks/:id',
-            component: 'tasks-details',
+            component: 'tasksDetails',
             as: 'TasksDetails'
           }
         ]);
 
       }
     };
-  });
+  }).service('router', RouterService);
 
 angular.module('app.home', ['ngcourse.main'])
 .directive('home', () => {
@@ -98,10 +103,7 @@ angular.module('app.home', ['ngcourse.main'])
   return { template: '<ngc-task-edit></ngc-task-edit>' }
 })
 
-
-
 //.config(RouterConfig)
-//.service('router', RouterService);
 
 angular.module('ngcourse.main',[]).directive(
   MainComponent.selector,
@@ -114,7 +116,7 @@ angular.module('ngcourse.authentication', [])
   LoginFormComponent.selector,
   LoginFormComponent.directiveFactory);
 
-angular.module('ngcourse.tasks', [])
+angular.module('ngcourse.tasks', ['ngcourse.router'])
   .service('tasksStore', TasksStore)
   .service('tasksActions', TaskActions)
   .directive(
@@ -161,11 +163,13 @@ angular.module('ngcourse', [
     koast.addEndpoint('users', ':_id', {
       useEnvelope: true
     });
-  });
+  })//.factory('RouteParams', adapter.downgradeNg2Provider(RouteParams));
 
 /*
 angular.element(document).ready(function() {
   angular.bootstrap(document, ['ngcourse']);
 });
 */
+
+//adapter.addProvider(RouteParams);
 adapter.bootstrap(document.body, ['ngcourse']);

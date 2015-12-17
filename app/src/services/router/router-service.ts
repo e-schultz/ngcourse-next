@@ -14,7 +14,7 @@ export class RouterConfig {
     private $locationProvider: angular.ILocationProvider
   ) {
 
-    this.$urlRouterProvider.otherwise('/tasks');
+/*    this.$urlRouterProvider.otherwise('/tasks');
     this.$locationProvider.html5Mode(false);
 
     this.$stateProvider
@@ -52,29 +52,26 @@ export class RouterConfig {
             }, 3000);
           }
         }
-      });
+      });*/
   }
 }
 
 export class RouterService {
 
-  static $inject = ['$state'];
+  static $inject = ['$router'];
 
-  constructor(private $state: angular.ui.IStateService) { }
+  constructor(private $router: any) { }
 
   goToAddTask() {
-    this.$state.go('tasks.add');
+    
+    this.$router.navigate(['TassAdd']);
   }
 
   goToTask(taskId) {
-    this.$state.go('tasks.details', {
-      _id: taskId
-    });
+    this.$router.navigate(['TassDetails',{id: taskId}]);
   }
 
   goToTaskList() {
-    this.$state.go('tasks', {}, {
-      reload: true
-    });
+    this.$router.navigate(['Tasks']);
   }
 };
