@@ -15,7 +15,7 @@ export class MainComponent {
   static directiveFactory: ng.IDirectiveFactory = () => {
     return {
       transclude: true,
-      restrict: 'E',
+      restrict: 'AE',
       scope: {},
       controllerAs: 'ctrl',
       bindToController: true,

@@ -11,7 +11,7 @@ export class TaskEditComponent {
 
   static directiveFactory: ng.IDirectiveFactory = () => {
     return {
-      restrict: 'E',
+      restrict: 'AE',
       scope: {},
       controllerAs: 'ctrl',
       bindToController: true,
@@ -38,12 +38,15 @@ export class TaskEditComponent {
     private router: any
   ) {
 
-
+    console.log('this',this);
+    console.log('$scope',$scope)
+    console.log('$routeParams',$routeParams);
+    
     let tasksSubscription =
       this.tasksStore.tasksSubject.subscribe(
         tasks => {
-
-          this._task = this.tasksStore.getTaskById(this.$routeParams.id);
+          //console.log('whut',this.$router._outlet.controller.$$routeParams.id)
+          this._task = this.tasksStore.getTaskById(this.$router._outlet.controller.$$routeParams.id);
         },
         error => this._errorMessage = error);
 
@@ -67,5 +70,13 @@ export class TaskEditComponent {
 
   get errorMessage() {
     return this._errorMessage;
+  }
+  
+  $onActivate() {
+    console.log('oh hai!',this.$routeParams);
+  }
+  
+  $onInit() {
+    console.log('oh hai!',this.$routeParams);
   }
 }

@@ -16,8 +16,9 @@ import * as Rx from 'rx';
 import {UpgradeAdapter} from 'angular2/upgrade';
 //import {Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig, RouteParams} from 'angular2/router';
 
-import '@angular/router/angular1/ng_route_shim'
+
 import  '@angular/router/angular1/angular_1_router';
+import '@angular/router/angular1/ng_route_shim';
 //console.log('what the duce',x);
 
 
@@ -68,17 +69,17 @@ angular.module('ngcourse.router', ['ngComponentRouter','ngRouteShim','app.home']
           },
           {
             path: '/tasks',
-            component: 'tasks',
+            component: 'ngcTasks',
             as: 'Tasks'
           },
           {
             path: '/tasks/add',
-            component: 'tasks-add',
+            component: 'ngcTaskAdd',
             as: 'TasksAdd'
           },
           {
             path: '/tasks/:id',
-            component: 'tasksDetails',
+            component: 'ngcTaskEdit',
             as: 'TasksDetails'
           }
         ]);
@@ -92,16 +93,7 @@ angular.module('app.home', ['ngcourse.main'])
   return {
     template: '',
   };
-}).directive('tasks',() => {
-  return {
-    
-    template: '<ngc-tasks></ngc-tasks>'
-  };
-}).directive('tasksAdd',() => {
-  return { template: '<ngc-task-add></ngc-task-add>' }
-}).directive('tasksDetails',() => {
-  return { template: '<ngc-task-edit></ngc-task-edit>' }
-})
+});
 
 //.config(RouterConfig)
 

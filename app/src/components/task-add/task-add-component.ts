@@ -7,7 +7,7 @@ export class TaskAddComponent {
   
   static directiveFactory: ng.IDirectiveFactory = () => {
     return {
-      restrict: 'E',
+      restrict: 'AE',
       scope: {},
       controllerAs: 'ctrl',
       bindToController: {},

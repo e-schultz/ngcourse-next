@@ -16,7 +16,7 @@ export class TaskListComponent {
   static selector = 'ngcTasks';
 
   static directiveFactory: ng.IDirectiveFactory = () => ({
-    restrict: 'E',
+    restrict: 'AE',
     controllerAs: 'ctrl',
     scope: {},
     bindToController: true,
