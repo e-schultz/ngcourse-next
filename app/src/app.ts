@@ -1,3 +1,5 @@
+import 'angular2/bundles/angular2-polyfills';
+import {UpgradeAdapter} from 'angular2/upgrade';
 import 'angular-ui-router';
 import 'lodash-compat';
 import 'koast-angular';
@@ -36,7 +38,7 @@ import {
   AuthenticationActions
 } from './actions';
 
-
+let adapter = new UpgradeAdapter();
 angular.module('ngcourse.router', ['ui.router'])
   .config(RouterConfig)
   .service('router', RouterService);
@@ -99,6 +101,9 @@ angular.module('ngcourse', [
     });
   });
 
+/*
 angular.element(document).ready(function() {
   angular.bootstrap(document, ['ngcourse']);
 });
+*/
+adapter.bootstrap(document.body, ['ngcourse']);

@@ -22,12 +22,18 @@
   "dependencies": {
     "angular": "^1.4.7",
     "angular-ui-router": "^0.2.15",
+    "angular2": "^2.0.0-beta.0",
     "basscss": "^7.0.4",
+    "es6-promise": "^3.0.2",
+    "es6-shim": "^0.33.13",
     "font-awesome": "^4.4.0",
     "immutable": "^3.7.5",
     "koast-angular": "^0.2.2",
     "lodash-compat": "^3.10.1",
-    "rx": "4.0.0"
+    "reflect-metadata": "^0.1.2",
+    "rx": "4.0.0",
+    "rxjs": "^5.0.0-beta.0",
+    "zone.js": "^0.5.10"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.7",
