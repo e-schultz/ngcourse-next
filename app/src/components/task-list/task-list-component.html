@@ -11,7 +11,9 @@
   </header>
   <!--<div class="mt4 mb4" ui-view="actionArea"></div>-->
   <div class="mt4 mb4">
-    <ng-outlet></ng-outlet>
+    -- list outlet -- <br/>
+<ng-outlet name="action"></ng-outlet>
+-- list outlet -- <br/>
   </div>
   <div class="md-col-8 mx-auto rounded tasks-list mb4">
     <ngc-task ng-repeat="task in ctrl.tasks" 

@@ -1,4 +1,5 @@
 
+<div>
 <ngc-login-form
   ng-hide="ctrl.user.isAuthenticated"
   on-submit="ctrl.login(data)"
@@ -29,8 +30,11 @@
     </a>
   </div>
 </div>
-
+-- outlet -- <br/>
 <ng-outlet></ng-outlet>
+-- outlet -- <br/>
+</div>
+
 <!--
 <div class="px2"
   ng-show="ctrl.user.isAuthenticated"

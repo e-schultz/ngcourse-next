@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>NgCourse-Next Demo Application</title>
-  </head>
+  <title>NgCourse-Next Demo Application</title>
+</head>
 
-  <body>
-    <div>
-      <app></app>
-      <!--<ngc-main>
-        <main class="container mt4" ui-view></main>
-      </ngc-main>-->
+<body>
+  <div>
+    <div ng-controller="AppController">
+      <ul>
+        <li><a ng-link="['Parent']">Parent</a></li>
+        <li><a ng-link="['Children','Child']">Child</a></li>
+       <!-- <li><a ng-link="['Children','SweetChild']">Children</a></li>-->
+      </ul>
+      <ng-outlet></ng-outlet>
     </div>
 
-  </body>
+  </div>
+
+</body>
 
 </html>

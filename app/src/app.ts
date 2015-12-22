@@ -17,7 +17,7 @@ import {UpgradeAdapter} from 'angular2/upgrade';
 //import {Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig, RouteParams} from 'angular2/router';
 
 
-import  '@angular/router/angular1/angular_1_router';
+import '@angular/router/angular1/angular_1_router';
 import '@angular/router/angular1/ng_route_shim';
 //console.log('what the duce',x);
 
@@ -53,12 +53,12 @@ UserActions,
 AuthenticationActions
 } from './actions';
 
-
+/*
 angular.module('ngcourse.router', ['ngComponentRouter','ngRouteShim','app.home'])
   .directive('app', () => {
     return {
       restrict: 'E',
-      template: `<ngc-main></ngc-main><ng-outlet><ng-outlet>`,
+      template: `<ng-outlet></ng-outlet>`,
       controller: function AppControllerDirective($router) {
         $router.config([
           {
@@ -78,10 +78,12 @@ angular.module('ngcourse.router', ['ngComponentRouter','ngRouteShim','app.home']
             as: 'TasksAdd'
           },
           {
-            path: '/tasks/:id',
+            aux: 'action',
+            //path: '/tasks/:id',
             component: 'ngcTaskEdit',
-            as: 'TasksDetails'
+            as: 'TaskDetails'
           }
+          
         ]);
 
       }
@@ -91,7 +93,7 @@ angular.module('ngcourse.router', ['ngComponentRouter','ngRouteShim','app.home']
 angular.module('app.home', ['ngcourse.main'])
 .directive('home', () => {
   return {
-    template: '',
+    template: 'hi <ng-outlet/>',
   };
 });
 
@@ -156,7 +158,7 @@ angular.module('ngcourse', [
       useEnvelope: true
     });
   })//.factory('RouteParams', adapter.downgradeNg2Provider(RouteParams));
-
+*/
 /*
 angular.element(document).ready(function() {
   angular.bootstrap(document, ['ngcourse']);
@@ -164,4 +166,71 @@ angular.element(document).ready(function() {
 */
 
 //adapter.addProvider(RouteParams);
+
+angular.module('ngcourse', ['ngComponentRouter', 'components'])
+  .controller('AppController', ($router) => {
+    console.log('Hello')
+    $router.config([
+      {
+        path: '/parent',
+        useAsDefault: false,
+        component: 'testParent',
+        name: 'Parent'
+
+      },
+      {
+        path: '/children/...',
+        useAsDefault: false,
+        component: 'children',
+        name: 'Children'
+      },
+      /*{
+        path: '/children/child',
+        component: 'testChild',
+        name: 'Child'
+      }*/
+    ]);
+  });
+
+angular.module('components', []).directive('children', Children)
+  .directive('testParent', () => ({
+    template: 'parent',
+    controller: ($router) => {
+      /*  $router.config([
+          {
+            path: '/child',
+            component: 'testChild'
+          }
+        ]);*/
+    }
+  })).directive('testChild', () => ({
+    template: 'Good Child',
+    controller: () => {
+      console.log('child controller');
+    }
+  })).directive('badChild', () => ({
+    template: 'badChild',
+    controller: () => {
+      console.log('child controller');
+    }
+  }))
+  
+ function Children() {
+   return {
+     template: `Children Container <ng-outlet></ng-outlet>
+     <a ng-link=['./Child']>Goto my child</a>
+     <a ng-link=['./BadChild']>Goto my BadChild</a>
+     `
+   };
+ }
+ Children.$routeConfig = [{
+   path: '/child',
+   component: 'testChild',
+   name: 'Child'
+ },{
+   path: '/badkid',
+   component: 'badChild',
+   name: 'BadChild'
+ }];
+ 
 adapter.bootstrap(document.body, ['ngcourse']);
