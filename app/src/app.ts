@@ -14,7 +14,7 @@ import {Component, View} from 'angular2/core';
 import * as angular from 'angular';
 import * as Rx from 'rx';
 import {UpgradeAdapter} from 'angular2/upgrade';
-//import {Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig, RouteParams} from 'angular2/router';
+import {Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig, RouteParams} from 'angular2/router';
 
 
 import '@angular/router/angular1/angular_1_router';
@@ -179,6 +179,11 @@ angular.module('ngcourse', ['ngComponentRouter', 'components'])
 
       },
       {
+        path: '/bags/...',
+        component: 'bags',
+        name: 'Bags'
+      },
+      {
         path: '/children/...',
         useAsDefault: false,
         component: 'children',
@@ -191,9 +196,32 @@ angular.module('ngcourse', ['ngComponentRouter', 'components'])
       }*/
     ]);
   });
-
-angular.module('components', []).directive('children', Children)
+ 
+angular.module('components', [])
+.component('bagsTest',{
+  template: 'howdy'
+})
+.component('bags', {
+  template: `<div>
+  <h1>Bags</h1>
+  <a ng-link="['./Pack']">Pack</a>
+  <ng-outlet></ng-outlet><div>`,
+  $routeConfig: [
+    {
+      path: '/',
+      useAsDefault: true,
+      component: 'bagsTest'
+    },{
+    path: '/pack',
+    component: 'pack',
+    name: 'Pack'
+  }]
+}).component('pack',{
+    template: 'All Packed'
+})
+.directive('children', Children)
   .directive('testParent', () => ({
+    restrict: 'AE',
     template: 'parent',
     controller: ($router) => {
       /*  $router.config([
@@ -213,13 +241,40 @@ angular.module('components', []).directive('children', Children)
     controller: () => {
       console.log('child controller');
     }
-  }))
-  
- function Children() {
+  })).directive('goldenChild', () => ({
+    template: 'goldenChild',
+    controller: () => {
+      console.log('child controller');
+    }
+  })).component('counter', {
+    template: `<div>hello {{counter.count}}</div>`,
+  bindings: {
+    count: '='
+  },
+  controller: function () {
+    function increment() {
+      this.count++;
+    }
+    function decrement() {
+      this.count--;
+    }
+    this.increment = increment;
+    this.decrement = decrement;
+  },
+  $routeConfig: [{
+    path: '/test',
+    component: 'goldenChild'
+  }]
+});
+
+
+function Children() {
+   
    return {
      template: `Children Container <ng-outlet></ng-outlet>
      <a ng-link=['./Child']>Goto my child</a>
      <a ng-link=['./BadChild']>Goto my BadChild</a>
+     <counter count=5></counter>
      `
    };
  }
