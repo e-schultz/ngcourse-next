@@ -3,3 +3,6 @@ node_modules
 app/__build/
 app/__typings/
 handout/*.html
+.idea
+_book/
+npm-debug.log
