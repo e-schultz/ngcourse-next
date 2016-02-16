@@ -1,6 +1,6 @@
 ## The Summary of Different Approaches
 
-                                      | Old School Angular 1.x | Angular 1.x Best Practices | **Angular Next**             | Angular 2
+| Old School Angular 1.x | Angular 1.x Best Practices | **Angular Next**             | Angular 2
 --------------------------------------|------------------------| ---------------------------|------------------------------|----------------------
 Nested scopes ("$scope", watches)     | Used heavily           | Avoided                    | **Avoided**                  | Gone 
 Directives vs controllers             | Use as alternatives    | Used together              | **Directives as components** | Component directives
