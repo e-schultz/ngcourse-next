@@ -1,76 +1,47 @@
-import {makeAuthenticatedMethod} from '../../utils/store-utils';
 import {USER_ACTIONS} from '../../actions/action-constants';
-import {List, Map, fromJS} from 'immutable';
+import {User} from '../../services';
+import * as Rx from 'rx';
 
 export class UsersStore {
 
-  private _users: Map<String, any>;
-  private _usersSubject: Rx.ReplaySubject<any>;
-  
-  /* Authenticated methods */
-  private getUsers: Function;
+  private users: Rx.ReplaySubject<User[]>;
+  private error: Rx.ReplaySubject<any>;
 
   static $inject = [
-    'koast',
     'dispatcher'
   ];
 
-  constructor(
-    private koast,
-    private dispatcher: Rx.Subject<any>
-  ) {
+  constructor(private dispatcher: Rx.Subject<any>) {
+    this.users = new Rx.ReplaySubject<User[]>(1);
+    this.error = new Rx.ReplaySubject(1);
+
     this.registerActionHandlers();
-    this.addAuthenticatedMethods();
-    this.initialize();
-  }
-
-  private initialize() {
-    this._users = Map<String, any>();
-    this._usersSubject = new Rx.ReplaySubject(1);
-    this.getUsers();
-  }
-
-  get usersSubject() {
-    return this._usersSubject;
   }
 
   private registerActionHandlers() {
+
     this.dispatcher.filter(
-      (action) => action.actionType === USER_ACTIONS.GET_USERS)
-      .subscribe(() => this.getUsers());
+      action => action.actionType === USER_ACTIONS.GET_USERS_RESPONSE)
+      .subscribe(action => this.users.onNext(action.users));
+
+    this.dispatcher.filter(
+      action => action.actionType === USER_ACTIONS.GET_USERS_RESPONSE_ERROR)
+      .subscribe(action => this.users.onError({
+        type: action.actionType,
+        error: action.error
+      }));
   }
 
-  private addAuthenticatedMethods() {
-    this.getUsers = makeAuthenticatedMethod(
-      this.koast,
-      () => Rx.Observable.fromPromise(
-        this.koast.queryForResources('users'))
-        .subscribe(
-        (users: Object[]) => {
-          this._users.clear();
-
-          this._users = this._users.withMutations(mutableUsersMap => {
-            users.forEach((value: any) => {
-              mutableUsersMap.set(value.username, value);
-            });
-
-          });
-
-          this.emitChange();
-        },
-        error => this.emitError(error))
-    );
+  getUser(username: string) {
+    return this.users
+      .map(users => users.find(user => user.username === username));
   }
 
-  private emitChange() {
-    this._usersSubject.onNext(this.users);
-  }
-
-  private emitError(error) {
-    this._usersSubject.onError(error);
-  }
-
-  get users() {
-    return this._users.toJS();
+  get usersByUsername() {
+    return this.users
+      .map(users => users.reduce((userMap, user) => {
+          userMap[user.username] = user;
+          return userMap;
+        }, {}));
   }
 }

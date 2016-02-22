@@ -1,14 +1,13 @@
-import {AuthenticationStore}
-from '../../stores/authentication/authentication-store';
-import {UsersStore} from '../../stores/users/users-store';
+import {AuthenticationStore, UsersStore}
+  from '../../stores';
 import {AuthenticationActions}
-from '../../actions/authentication/authentication-actions';
+  from '../../actions';
 
 export class MainComponent {
 
-  private _user: any;
-  private _displayName: String;
-  private _errorMessage: String;
+  private authenticationInfo: any;
+  private displayName: String;
+  private errorMessage: String;
 
   static selector = 'ngcMain';
 
@@ -37,19 +36,11 @@ export class MainComponent {
     private authenticationActions: AuthenticationActions,
     private usersStore: UsersStore) {
 
-    let authSubscription =
-      this.authenticationStore.userSubject.subscribe(
-        user => this._user = user,
-        error => this._errorMessage = error);
-
-    let usersSubscription =
-      this.usersStore.usersSubject.subscribe(
-        users => this._displayName = users[this.user.data.username].displayName,
-        error => this._errorMessage = error);
+    let disposable = authenticationStore.authenticationInfo
+      .subscribe(user => this.authenticationInfo = user);
 
     this.$scope.$on('$destroy', () => {
-      authSubscription.dispose();
-      usersSubscription.dispose();
+      disposable.dispose();
     });
   }
 
@@ -59,17 +50,5 @@ export class MainComponent {
 
   private logout() {
     this.authenticationActions.logout();
-  }
-
-  get user() {
-    return this._user;
-  }
-
-  get displayName() {
-    return this._displayName;
-  }
-
-  get errorMessage() {
-    return this._errorMessage;
   }
 }
