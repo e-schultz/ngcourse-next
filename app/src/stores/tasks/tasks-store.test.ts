@@ -1,74 +1,49 @@
-import {TasksStore} from '../../stores/tasks/tasks-store';
-import {TASK_ACTIONS} from '../../actions/action-constants';
+import {TasksStore} from '../../stores';
+import {TASK_ACTIONS} from '../../actions';
 
-import 'rx';
-// import 'rx.testing';
-// import 'rx.virtualtime';
+import * as Rx from 'rx';
 
 describe('TasksStore', () => {
   
   let _scheduler;
   let _mockDispatcher;
-  let _mockKoast;
-  let _mockServerService;
   let _$log;
   
   let _mockTasks;
-  let _mockNewTask;
   
   beforeEach(() => {
     
     _mockTasks = [{
+      _id: 2,
       owner: 'alice',
-      description: 'Build the dog shed.',
-      done: true
+      description: 'Build the dog shed.'
     }, {
+      _id: 5,
       owner: 'bob',
-      description: 'Get the milk.',
-      done: false
+      description: 'Get the milk.'
     }, {
+      _id: 7,
       owner: 'alice',
-      description: 'Fix the door handle.',
-      done: true
+      description: 'Fix the door handle.'
     }];
-    
-    _mockNewTask = {
-      owner: 'alice',
-      description: 'Kill Bill.',
-      done: false
-    };
-
-    angular.mock.inject($log => _$log = $log);
-    
-    _mockKoast = {
-      user: {
-        whenAuthenticated: () => Promise.resolve(),
-        data: {
-          username: 'alice'
-        }
-      },
-      queryForResources: sinon.spy(() => Promise.resolve(_mockTasks)),
-      createResource: sinon.spy(() => Promise.resolve(
-        _mockTasks.push(_mockNewTask)))
-    };
     
     _scheduler = new Rx.TestScheduler();
   });
 
-  it('should add a new task', (done) => {
+  it('should get a task by id', (done) => {
 
     _mockDispatcher = _scheduler.createColdObservable(
       Rx.ReactiveTest.onNext(10, {
-        actionType: TASK_ACTIONS.ADD_TASK,
-        newTask: _mockNewTask
+        actionType: TASK_ACTIONS.GET_TASKS_RESPONSE,
+        tasks: _mockTasks
       }));
     
-    let tasksStore = new TasksStore(_mockKoast, _mockDispatcher);
+    let tasksStore = new TasksStore(_mockDispatcher);
 
-    tasksStore.tasksSubject.subscribe(
-      tasks => {
-        chai.expect(tasks).to.not.be.undefined;
-        chai.expect(tasks).to.contain(_mockNewTask);
+    tasksStore.getTaskById(5).subscribe(
+      task => {
+        chai.expect(task).to.not.be.undefined;
+        chai.expect(task).to.deep.equal(_mockTasks[1]);
         done();
       }
     );

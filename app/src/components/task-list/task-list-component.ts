@@ -5,14 +5,15 @@ import {AuthenticationStore}
 from '../../stores/authentication/authentication-store';
 import {TaskActions} from '../../actions/task/task-actions';
 
+import {User, Task} from '../../services';
+
 export class TaskListComponent {
 
-  private _tasks: any[];
-  private _users: {};
-  private _user: any;
-  private _displayName: String;
-  private _errorMessage: String;
-
+  tasks: Task[];
+  users: {};
+  user;
+  errorMessage: String;
+  
   static selector = 'ngcTasks';
 
   static directiveFactory: ng.IDirectiveFactory = () => ({
@@ -29,7 +30,8 @@ export class TaskListComponent {
     'router',
     'authenticationStore',
     'tasksStore',
-    'usersStore'
+    'usersStore',
+    'tasksActions'
   ];
 
   constructor(
@@ -37,48 +39,33 @@ export class TaskListComponent {
     private router: RouterService,
     private authenticationStore: AuthenticationStore,
     private tasksStore: TasksStore,
-    private usersStore: UsersStore
+    private usersStore: UsersStore,
+    private tasksActions: TaskActions
   ) {
 
-    let authSubscription = this.authenticationStore.userSubject.subscribe(
-      user => this._user = user,
-      error => this._errorMessage = error);
+    this.tasks = [];
+    this.users = {};
 
-    let tasksSubscription = this.tasksStore.tasksSubject.subscribe(
-      tasks => this._tasks = tasks,
-      error => this._errorMessage = error);
+    let disposables: Rx.IDisposable[] = [];
+    
+    disposables.push(
+      authenticationStore.authenticationInfo
+        .flatMap(authInfo => usersStore.getUser(authInfo.data.username))
+        .subscribe(user => this.user = user),
+        
+      tasksStore.tasks
+        .subscribe(tasks => this.tasks = tasks),
+        
+      usersStore.usersByUsername
+        .subscribe(users => this.users = users)
+    );
+      
 
-    let usersSubscription = this.usersStore.usersSubject.subscribe(
-      users => {
-        this._users = users;
-        this._displayName = users[this.user.data.username].displayName;
-      },
-      error => this._errorMessage = error);
-
-    this.$scope.$on('$destroy', () => {
-      authSubscription.dispose();
-      tasksSubscription.dispose();
-      usersSubscription.dispose();
-    });
+    this.$scope.$on('$destroy', 
+      () => disposables.forEach(disposable => disposable.dispose()));
   }
-
-  get tasks() {
-    return this._tasks;
-  }
-
-  get displayName() {
-    return this._displayName;
-  }
-
-  get user() {
-    return this._user;
-  }
-
-  get users() {
-    return this._users;
-  }
-
-  get errorMessage() {
-    return this._errorMessage;
+  
+  delete(task) {
+    this.tasksActions.deleteTask(task);  
   }
 }
