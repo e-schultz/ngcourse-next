@@ -6,11 +6,11 @@
   "scripts": {
     "postinstall": "npm run typings; gitbook install",
     "typings": "rimraf app/__typings && tsd install && tsd link",
-    "start": "webpack-dev-server --inline --colors --display-error-details --display-cached",
+    "start": "node_modules/.bin/webpack-dev-server --inline --colors --display-error-details --display-cached",
     "clean": "rimraf app/__build",
     "book-build": "gitbook build",
     "book-dev": "gitbook serve",
-    "build": "npm run clean && webpack",
+    "build": "npm run clean && node_modules/.bin/webpack",
     "test": "karma start",
     "e2e": "npm run build && gulp e2e"
   },
@@ -43,15 +43,12 @@
     "css-loader": "^0.21.0",
     "extract-text-webpack-plugin": "^0.9.0",
     "file-loader": "^0.8.4",
-<<<<<<< HEAD
     "gitbook-cli": "^1.0.1",
     "gitbook-plugin-jsbin": "0.0.12",
     "gitbook-plugin-versions": "^2.1.1",
-=======
     "gulp": "^3.9.0",
     "gulp-webdriver": "^1.0.1",
     "gulp-webserver": "^0.9.1",
->>>>>>> igor/chore/fix-flux
     "html-webpack-plugin": "^1.6.2",
     "istanbul": "^0.4.0",
     "istanbul-instrumenter-loader": "^0.1.3",
