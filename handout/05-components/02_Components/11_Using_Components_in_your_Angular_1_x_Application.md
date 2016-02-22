@@ -15,8 +15,6 @@ angular.module('ngcourse')
 });
 ```
 
-Note, the use of the utility functions we have created in *component-utils.ts*, allowing for a cleaner syntax when defining components. Let's look at the implementation of the function `makeSelector` and `makeDirective`.
-
 Finally, we can now use this component in our *index.html* as follows:
 
 ```html
