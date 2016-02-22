@@ -6,7 +6,7 @@ The new "fat arrow" notation can be used to define anonymous functions in a simp
 
 Consider the following example:
 
-```ts
+```js
   items.forEach(function(x) {
     console.log(x);
     incrementedItems.push(x+1);
@@ -15,7 +15,7 @@ Consider the following example:
 
 This can be rewritten as an "arrow function" using the following syntax:
 
-```ts
+```js
   items.forEach((x) => {
     console.log(x);
     incrementedItems.push(x+1);
@@ -24,13 +24,13 @@ This can be rewritten as an "arrow function" using the following syntax:
 
 Functions that calculate a single expression and return its values can be defined even simpler:
 
-```ts
+```js
   incrementedItems = items.map((x) => x+1);
 ```
 
 The latter is _almost_ equivalent to the following:
 
-```ts
+```js
   incrementedItems = items.map(function (x) {
     return x+1;
   });
@@ -38,7 +38,7 @@ The latter is _almost_ equivalent to the following:
 
 There is one important difference, however: arrow functions share the value of `this` with the function in the context of which they are defined. Consider the following example:
 
-```ts
+```js
 class LoginFormController {
   constructor() {
     this.errorMessage = 'All good.';
@@ -59,7 +59,7 @@ Let's try this code on ES6 Fiddle ([http://www.es6fiddle.net/](http://www.es6fid
 
 Now, let's change the method to use the arrow function:
 
-```ts
+```js
 class LoginFormController {
   constructor() {
     this.errorMessage = 'All good.';
