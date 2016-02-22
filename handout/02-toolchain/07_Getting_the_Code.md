@@ -14,7 +14,7 @@ Now, switch to the branch that we'll be using for today's course:
   git checkout YYYY-DD-MM
 ```
 
-**Replace "YYYY-DD-MM" above with the start date of the course, e.g., "2015-06-17".**
+**Replace "YYYY-DD-MM" above with the start date of the course, e.g., "2015-17-06".**
 
 This gives us a hollowed-out version of the application we'll be building.
 
