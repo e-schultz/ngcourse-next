@@ -37,6 +37,8 @@ The second case is "function invocation":
 
 Here `this` used inside `someFunction` can refer to different things depending on whether we are in "strict" mode or not. Without using the "strict" mode, `this` refers to the context in which `someFunction()` was called. This rarely what you want, and it can be extremely confusing. In strict mode, `this` would be undefined, which is slightly less confusing.
 
+[View Example](http://jsbin.com/vekawimihe/2/edit?js,console)
+
 One of the implications of this is that you cannot easily detach a method from its object. E.g., consider this example:
 
 ```js
