@@ -2,7 +2,7 @@
 
 ES5 has objects, but it has no concept of class. ES6 introduces classes.
 
-```ts
+```js
 class LoginFormController {
   constructor() {
     // This is the constructor.
