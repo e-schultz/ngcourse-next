@@ -16,7 +16,7 @@ Observables in RxJS can be classified into 2 main groups, Hot and Cold Observabl
   }, 2000);
 ```
 
-In the above case subscriber B subscribes 2000ms after subscriber A. Yet subscriber B is starting to get the value from 0 to 6 just like subscriber A only time shifted. This behaviour is referred to as a **Cold Observable**. A useful analogy is watching a pre-recorded video, let's stay on Netflix. You press play and the movie starts playing from the beginning. Someone else, can start playing the same movie in their own home 25 minutes later.
+In the above case subscriber B subscribes 2000ms after subscriber A. Yet subscriber B is starting to get the value from 0 to 6 just like subscriber A only time shifted. This behaviour is referred to as a **Cold Observable**. A useful analogy is watching a pre-recorded video, let's say on Netflix. You press play and the movie starts playing from the beginning. Someone else, can start playing the same movie in their own home 25 minutes later.
 
 On the other hand there is also a **Hot Observable**, which is more like a live performance. You attend a live band performance from the beginning, but someone else might be 25 minutes late to the show. The band will not start playing from the beginning and you have to start watching the performance from where it is. 
 
