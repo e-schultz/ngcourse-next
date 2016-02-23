@@ -37,8 +37,7 @@ instantiated later, they can customize them based on configuration requests it
 received in the config phase.
 
 In practical terms, any JavaScript object that exposes a function called $get()
-can serve as a provider.  We'll cover this in more detail in part 15 of this
-course.
+can serve as a provider.
 
 So in this example, we're configuring ui-router's `$stateProvider`,
 `$urlRouterProvider`, and `$locationProvider` with settings that will later
