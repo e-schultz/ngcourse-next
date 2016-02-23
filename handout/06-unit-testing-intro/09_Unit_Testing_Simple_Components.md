@@ -6,20 +6,18 @@ Let's see how we can apply what we learned so far and unit test our `TaskCompone
 import 'angular';
 import 'angular-mocks';
 
-import {makeDirective, makeSelector} from '../../utils/component-utils';
 import {TaskComponent} from './task-component';
-import '../../template-cache';
-
+      
 describe('TaskComponent', () => {
 
   let _$scope;
   let _$compile;
-
-  angular.module('tasks', ['ngcourse.templates'])
+  
+  angular.module('tasks', [])
     .directive(
-      makeSelector(TaskComponent), 
-      makeDirective(TaskComponent));
-   
+      TaskComponent.selector, 
+      TaskComponent.directiveFactory);
+        
   beforeEach(() => { 
     angular.mock.module('tasks');
     angular.mock.inject(($compile, $rootScope) => {
