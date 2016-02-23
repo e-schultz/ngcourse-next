@@ -1,4 +1,4 @@
-# Part 1: Introduction to AngularJS and ngCourse-Next
+# Introduction to AngularJS and ngCourse-Next
 
 AngularJS is the leading open source JavaScript application framework backed by Google. The "1.x" version of AngularJS has been used quite widely. The new "Angular 2" version of the framework is currently available as a preview.
 
