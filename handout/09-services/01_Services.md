@@ -26,12 +26,7 @@ Note we have added a new module definition and need to update *app.ts*.
   angular.module('ngcourse', [])
     ...
     .service('tasksService', TasksService)
-    .directive(
-      makeSelector(TaskListComponent),
-      makeDirective(TaskListComponent))
-    .directive(
-      makeSelector(TaskComponent),
-      makeDirective(TaskComponent))
+    
   ...    
 ```
 
