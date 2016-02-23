@@ -7,7 +7,7 @@ object, then call a method on that object, get another method, etc. JavaScript
 allows us to insert white space before the `.` that precedes a method
 invocation, so this:
 
-In the example above,
+In the previous example,
 
 ```javascript
   angular.module('ngcourse')
@@ -15,7 +15,7 @@ In the example above,
   .controller(...);
 ```
 
-is really equivalent to this:
+is equivalent to this:
 
 ```javascript
   angular.module('ngcourse').controller(...);
