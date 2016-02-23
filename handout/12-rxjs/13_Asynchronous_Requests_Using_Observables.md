@@ -2,7 +2,7 @@
 
 A lot of the time the asynchronous nature of our application will surface when dealing with UI events as illustrated in examples above, or making asynchronous server requests. Observables are well equipped to deal with both.
 
-We have already seen the code below in Chapter 6 about REST APIs.
+We have already seen the code below in Chapter 8 about REST APIs.
 
 ```javascript
 
