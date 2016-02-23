@@ -69,7 +69,6 @@
 	* [The Importance of Test Documentation](handout/06-unit-testing-intro/07_The_Importance_of_Test_Documentation.md)
 	* [Mocha with Chai](handout/06-unit-testing-intro/08_Mocha_with_Chai.md)
 	* [Unit Testing Simple Components](handout/06-unit-testing-intro/09_Unit_Testing_Simple_Components.md)
-		* [Template Cache](handout/06-unit-testing-intro/10_Template_Cache.md)
 		* [Before Each](handout/06-unit-testing-intro/11_Before_Each_.md)
 		* [Inject](handout/06-unit-testing-intro/12_Inject.md)
 		* [The Test](handout/06-unit-testing-intro/13_The_Test.md)
