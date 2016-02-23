@@ -2,7 +2,7 @@
 
 Now we are ready to start making HTTP calls from our Angular app.
 
-While AngularJS provides a service called `$resource` to interacting with
+While AngularJS provides a service called `$resource` for interacting with
 RESTful APIs, we won't be using it, because use of `$resource` often leads to
 an "optimistic" approach to asynchronous code, which results in bugs that are
 hard to track. Instead, we will be using a more basic Angular server, `$http`.
