@@ -6,7 +6,7 @@ has this to say about JavaScript:
 
 > Most languages contain good parts and bad parts. I discovered that I could
 > be a better programmer by using only the good parts and avoiding the bad
-> parts... JavaScript is a language with more than its share of bads parts.
+> parts... JavaScript is a language with more than its share of bad parts.
 
 Crockford goes on to point out that JavaScript also has lots of _good_ parts which can make it a great language to use. The key is avoiding the bad parts.
 
