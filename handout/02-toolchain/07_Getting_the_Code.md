@@ -7,7 +7,7 @@ Before we proceed, get the code from Git if you have not done so:
   cd ngcourse-next
 ```
 
-Now, switch to the branch that we'll be using for today's course:
+Now, create, and switch to the branch that we'll be using for today's course:
 
 ```bash
   git branch --track YYYY-DD-MM origin/YYYY-DD-MM
