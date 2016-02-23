@@ -1,4 +1,4 @@
-# Part 06: Introduction to Unit Testing
+# Introduction to Unit Testing
 
 ## The Rationale
 
