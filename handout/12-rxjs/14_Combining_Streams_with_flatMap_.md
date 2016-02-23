@@ -1,5 +1,13 @@
 ## Combining Streams with `flatMap`
 
+A case for FlatMap:
+
+- [A simple observable stream](http://jsbin.com/nutegi/36/edit?js,console)
+- [A stream of arrays](http://jsbin.com/lerake/3/edit?js,console)
+- [Filter the items from each event](http://jsbin.com/widadiz/2/edit?js,console)
+- [Stream of filtered items](http://jsbin.com/reyoja/2/edit?js,console)
+- [Filter + map simplified with flatMap](http://jsbin.com/sahiye/2/edit?js,console)
+
 We want to make something a bit more useful and attach our server request to a button click. How can that be done with streams? Let's observe the example below.
 
 ```javascript
