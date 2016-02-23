@@ -1,4 +1,4 @@
-# Part 7. Making HTTP Requests.
+# Making HTTP Requests.
 
 Most AngularJS apps will need to interact with a backend system to achieve
 their objectives. By far the most common protocol for this is HTTP (or,
