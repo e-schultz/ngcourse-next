@@ -1,6 +1,6 @@
 ## Command-line JavaScript: [Node.JS](http://nodejs.org)
 
-NodeJS is an environment that lets you write JavaScript programs that live
+NodeJS is an environment that lets you write JavaScript programs that run
 outside the browser.  It provides:
 
 * the V8 JavaScript interpreter
