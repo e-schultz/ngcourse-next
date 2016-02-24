@@ -4,7 +4,7 @@ It is important that Stores, provide read-only access to its data. Stores should
 
 What if a component wants to make a change to the data retrieved from a store. This could be for UI purposes, re-shaping, etc. If that were to happen it would change the state of the store.
 
-This is why our stores should contain their state in immutable data structures. To illustrate on how this can be achieved, let's refactor our `TasksStore` to use immutable for it's model. Even though there could be several ways we could achieve this, for the purposes of this example we are going to be using the `Immutable.js` library: https://facebook.github.io/immutable-js/
+This is why our stores should maintain their state in immutable data structures. To illustrate on how this can be achieved, let's refactor our `TasksStore` to use immutable for it's model. Even though there could be several ways we could achieve this, for the purposes of this example we are going to be using the `Immutable.js` library: https://facebook.github.io/immutable-js/
 
 ```javascript
 ...
