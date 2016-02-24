@@ -56,7 +56,7 @@ describe('TaskListComponent', () => {
 });
 ```
 
-The top part of the test should be familiar, we are just creating mock data to use within our test. We should look at the anatomy of the test defined in our only `it` block.
+The top part of the test should be familiar, we are just creating mock data to use within our test. We should look at the anatomy of the test defined in our only `it` block:
 
 1. First, we create a TestScheduler object. TestScheduler is a virtual scheduler that allows us to control the timing of our test. 
 
