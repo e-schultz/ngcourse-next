@@ -1,6 +1,6 @@
 ### Getting the tasks from the server
 
-We modify the `getTasks` method in the `TaskActions` service:
+We start by modifying the `getTasks` method in the `TaskActions` service:
 
 ```javascript
 export class TaskActions {
