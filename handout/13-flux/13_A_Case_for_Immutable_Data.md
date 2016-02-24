@@ -1,6 +1,6 @@
 ## A Case for Immutable Data
 
-The important part is that Stores, provide read-only access to its data. As Stores should not provide setters to change their state. In our app so far we aren't actually maintaining state in the store. We fetch data from the server and publish it as is. In a more real world scenario you might actually want to maintain some data in the store. And then a reference to that state will be pushed to the observers.
+The important part is that Stores, provide read-only access to its data. As Stores should not provide setters to change their state. In our app so far we aren't actually maintaining state in the store. We fetch data from the server and publish it as is. In a more real world scenario you might actually want to maintain some data in the store. And then a reference to that state is pushed to the observers.
 
 Technically if our `TaskListComponent` decided to change the array of `tasks` it received from the store, it in effect would change the state of the store's domain. What if a component wants to make a change to this data for some UI purposes?
 
