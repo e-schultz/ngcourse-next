@@ -3,36 +3,32 @@
 So far we have managed to get the data we need from the server and make it available to the store. The next step is to publish this data to for our components. The components will also be listening to the changes to the store. We will implement this mechanism using what we learned about RxJS.
 
 ```javascript
-  ...
-  private _tasksSubject;
-  private _tasks;
+export class TasksStore {
 
-  static $inject = ['$log', 'server', 'dispatcher'];
-  constructor(
-    private $log,
-    private server,
-    private dispatcher
-    ) {
-      this._tasks = [];
-      this._tasksSubject = new Rx.ReplaySubject(1);
-      this.registerActionHandlers();
-      this.getTasks();
-  }
-  
-  get tasksSubject() {
-    return this._tasksSubject;  
-  }
-  
-  private emitChange() {
-    this._tasksSubject.onNext();
-  }
-  
-  private emitError(error) {
-    this._tasksSubject.onError(error);
+  private _tasks: Rx.ReplaySubject<Task[]>;
+  private _error: Rx.ReplaySubject<any>;
+
+  static $inject = ['dispatcher'];
+
+  constructor(private dispatcher: Rx.Subject<any>) {
+
+    this._tasks = new Rx.ReplaySubject<Task[]>(1);
+    this._error = new Rx.ReplaySubject(1);
+
+    this.registerActionHandlers();
   }
 
-  private registerActionHandlers() {
+  get tasks() {
+    return this._tasks;
+  }
+
+  get error() {
+    return this._error;
+  }
+
   ...
+
+}
 ```
 
 
