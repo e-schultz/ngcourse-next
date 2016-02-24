@@ -38,7 +38,7 @@ Let go through this code step by step:
 
 2. `ReplaySubject` is a special subject that will replay a value from its buffer when a new subscriber is added.
 
-3. We have added a new getter property `get tasksSubject()`, that can be used by an observer to subscribe to and be notified whenever a change occurs to our domain model.
+3. We have added a new getter property `get tasks()`, that can be used by an observer to subscribe to and be notified whenever a change occurs to our domain model.
 
 3. We implemented 2 utility method that we will use within our store to notify our on change observer of change to the model within the store, or an error that occurred within the store with `emitChange()` and `emitError(error)` respectively.
 
