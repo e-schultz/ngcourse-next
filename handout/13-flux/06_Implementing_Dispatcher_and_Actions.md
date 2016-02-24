@@ -25,7 +25,7 @@ Now, let add some actions to push onto our dispatcher later. Create a new file i
     getTasks() {
       this.dispatcher.onNext({
         actionType: TASK_ACTIONS.GET_TASKS,
-        tasks: tasks
+        tasks: []
       })
     }
   }
