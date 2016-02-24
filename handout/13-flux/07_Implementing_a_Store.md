@@ -44,4 +44,4 @@ export class TasksStore {
 ```
 
 For convenience we have created a new method on our Store called `registerActionHandlers()` where we will listen to incoming actions.
-Notice how we use `filter()` method to filter the actions that are relevant to this store, in this case we are only responding to `TASK_ACTIONS.GET_TASKS` and invoking a method called `getTasks()` to process this action.
+Notice how we use `filter()` method to filter the actions that are relevant to this store, in this case we are only responding to `TASK_ACTIONS.GET_TASKS`.
