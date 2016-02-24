@@ -1,6 +1,6 @@
 ### Notifying Store Subscribers of State Change
 
-So far we have managed to get the data we need from the server and make it available to the store. The next step is to publish this data to for our components. Additionally, the components will also be listening to the changes to the store. We will implement this mechanism using what we learned about RxJS.
+So far we have managed to get the data we need from the server and make it available to the store. The next step is to publish this data to for our components. The components will also be listening to the changes to the store. We will implement this mechanism using what we learned about RxJS.
 
 ```javascript
   ...
