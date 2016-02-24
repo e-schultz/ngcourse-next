@@ -20,6 +20,6 @@ export class TaskActions {
 }
 ```
 
-Here we trigger the `TasksService` to make the `GET` request. When the 
+Here we trigger the `TasksService` to make the `GET` request. And based on whether the request resolves/rejects we dispatch the appropriate action.
 
 Notice the use of `Rx.Observable.fromPromise` that we have covered in the previous chapter to wrap our Promise base server. This is not required and you could achieve a similar result using `then()` methods of the underlying promise. Also, we have added a call to `getTasks()` method within the constructor to initialize our store with the data at the beginning of it's lifecycle.
