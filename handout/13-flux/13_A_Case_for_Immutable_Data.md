@@ -17,6 +17,8 @@ export class TasksStore {
   private _data;
 
   static $inject = ['dispatcher'];
+  
+  ...
 
   constructor(private dispatcher: Rx.Subject<any>) {
 
