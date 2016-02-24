@@ -12,45 +12,36 @@ In Chapter 13 - RxJS we have subscribed to Observables with Observers that imple
 Now, let add some actions to push onto our dispatcher later. Create a new file in *app/src/actions/task-actions.ts*
 
 ```javascript
+  import {TASK_ACTIONS} from '../action-constants';
 
   export class TaskActions {
 
-    static $inject = ['dispatcher'];
-    constructor(private dispatcher) {
-      this.dispatcher = dispatcher;
-    }
+    static $inject = ['dispatcher', 'tasksService'];
+    constructor(
+      private dispatcher: Rx.Subject<any>,
+      private tasksService: TasksService
+    ) { }
 
     getTasks() {
-      this.dispatcher.onNext({
-        actionType: 'GET_TASKS'
-      });
+      this.tasksService.getTasks()
+        .then(tasks => this.dispatcher.onNext({
+          actionType: TASK_ACTIONS.GET_TASKS_RESPONSE,
+          tasks: tasks
+        }))
+        .then(null, error => this.dispatcher.onNext({
+          actionType: TASK_ACTIONS.GET_TASKS_RESPONSE_ERROR,
+          error: error
+        }));
     }
   }
 ```
 
-It is a poor practice to use hard-coded strings like `'GET_TASKS'` above. We should extract our constants into a separate file, *app/src/actions/action-constants.ts*
+It is a poor practice to use hard-coded strings like `'GET_TASKS'`. Therefore, we extracted our constants into a separate file, *app/src/actions/action-constants.ts* and are using those constants in *task-actions.ts* instead.
 
 ```javascript
   export const TASK_ACTIONS = {
     GET_TASKS: 'GET_TASKS',
   };
-```
-
-and let's use those constants in *task-actions.ts* instead
-
-``` javascript
-  ...
-  import {TASK_ACTIONS} from '../action-constants';
-
-  export class TaskActions {
-    ...
-    getTasks() {
-      this.dispatcher.onNext({
-        actionType: TASK_ACTIONS.GET_TASKS
-      });
-    }
-  }
-
 ```
 
 Great! Now we can create our first store.
