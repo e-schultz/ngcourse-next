@@ -40,19 +40,21 @@ Let go through this code step by step:
 
 3. We have added getters for both `_tasks` and `_error`. These can be used by an observer to subscribe to and be notified whenever a change occurs to our store.
 
-Now that we have all the parts in place in order to notify our observer of changes within the store, let's modify our `getTasks()` method as follows.
+The last step is to notify our observer of changes within the store. For this we modify the action handlers as follows: 
 
 ```javascript
   ...
-  private getTasks() {
-    Rx.Observable.fromPromise(
-      this.server.get('/api/v1/tasks'))
-        .subscribe(
-          tasks => {
-            this._tasks = tasks;
-            this.emitChange();
-          },
-          error => this.emitError(error));
+  private registerActionHandlers() {
+    this.dispatcher.filter(
+      action => action.actionType === TASK_ACTIONS.GET_TASKS)
+        .subscribe(action => this._tasks.onNext(action.tasks));
+
+    this.dispatcher.filter(
+      action => action.actionType === TASK_ACTIONS.GET_TASKS_RESPONSE_ERROR)
+        .subscribe(action => this._error.onNext({
+          type: action.actionType,
+          error: action.error
+        }));
   }
   ...
 ```
