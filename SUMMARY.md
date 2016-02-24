@@ -139,7 +139,6 @@
 	* [Using Stores within Components](handout/13-flux/11_Using_Stores_within_Components.md)
 	* [Clean up](handout/13-flux/12_Clean_up.md)
 	* [A Case for Immutable Data](handout/13-flux/13_A_Case_for_Immutable_Data.md)
-	* [Emitting Actions from Views](handout/13-flux/14_Emitting_Actions_from_Views.md)
 * [Unit Testing Stores](handout/14-unit-testing-flux-components/README.md)
 	* [Unit Testing a Component that depends on a Store](handout/14-unit-testing-flux-components/01_Unit_Testing_a_Component_that_depends_on_a_Store.md)
 	* [Unit Testing a Store](handout/14-unit-testing-flux-components/02_Unit_Testing_a_Store.md)
