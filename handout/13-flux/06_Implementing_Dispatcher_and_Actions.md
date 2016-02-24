@@ -23,15 +23,10 @@ Now, let add some actions to push onto our dispatcher later. Create a new file i
     ) { }
 
     getTasks() {
-      this.tasksService.getTasks()
-        .then(tasks => this.dispatcher.onNext({
-          actionType: TASK_ACTIONS.GET_TASKS,
-          tasks: tasks
-        }))
-        .then(null, error => this.dispatcher.onNext({
-          actionType: TASK_ACTIONS.GET_TASKS_RESPONSE_ERROR,
-          error: error
-        }));
+      tasks => this.dispatcher.onNext({
+        actionType: TASK_ACTIONS.GET_TASKS,
+        tasks: tasks
+      })
     }
   }
 ```
