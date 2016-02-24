@@ -136,7 +136,6 @@
 	* [Implementing a Store](handout/13-flux/07_Implementing_a_Store.md)
 		* [Getting the tasks from the server](handout/13-flux/08_Getting_the_tasks_from_the_server.md)
 		* [Notifying Store Subscribers of State Change](handout/13-flux/09_Notifying_Store_Subscribers_of_State_Change.md)
-	* [Adding Getters to our Store](handout/13-flux/10_Adding_Getters_to_our_Store.md)
 	* [Using Stores within Components](handout/13-flux/11_Using_Stores_within_Components.md)
 	* [Clean up](handout/13-flux/12_Clean_up.md)
 	* [A Case for Immutable Data](handout/13-flux/13_A_Case_for_Immutable_Data.md)
