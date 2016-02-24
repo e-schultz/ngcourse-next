@@ -14,7 +14,7 @@ Now that we have a dispatcher and actions defined, lets start on our first Store
   }
 ```
 
-Our Store's domain object will be a list of tasks that we will receive from the server and our Dispatcher is available to us from the `constructor` injection.
+Our Store's will be responsible for providing the list of tasks that we will receive from the server. The Dispatcher is available to us from the `constructor` injection.
 
 Before we do anything we need to listen to incoming Actions relevant to this store. Let's listen to incoming actions from our Dispatcher.
 
