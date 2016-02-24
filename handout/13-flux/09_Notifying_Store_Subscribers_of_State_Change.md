@@ -34,7 +34,10 @@ export class TasksStore {
 
 Let go through this code step by step:
 
-1. We created a `Rx.ReplaySubject(1)` as a private instance variable to be our change notification subject. This is a special subject that will replay a value from its buffer when a new subscriber is added.
+1. We created two `Rx.ReplaySubject(1)`s: `_tasks` & `_error`. These will be used as our change notification subjects. One for the data and the other for any errors.
+
+2. `ReplaySubject` is a special subject that will replay a value from its buffer when a new subscriber is added.
+
 2. We have added a new getter property `get tasksSubject()`, that can be used by an observer to subscribe to and be notified whenever a change occurs to our domain model.
 3. We implemented 2 utility method that we will use within our store to notify our on change observer of change to the model within the store, or an error that occurred within the store with `emitChange()` and `emitError(error)` respectively.
 
