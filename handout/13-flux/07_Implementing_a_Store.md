@@ -10,7 +10,6 @@ Now that we have a dispatcher and actions defined, lets start on our first Store
     static $inject = ['$log', 'dispatcher'];
     constructor(
       private $log,
-      private server,
       private dispatcher
       ) {
 
@@ -32,9 +31,8 @@ export class TasksStore {
   static $inject = ['$log', 'dispatcher'];
   constructor(
     private $log,
-    private server,
     private dispatcher
-    ) {
+  ) {
       this.registerActionHandlers();
   }
   
