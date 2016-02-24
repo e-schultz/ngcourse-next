@@ -20,7 +20,7 @@ export class TaskActions {
 }
 ```
 
-Here we trigger the `TasksService` to make the `GET` request. And based on whether the request resolves/rejects we dispatch the appropriate action.
+Here we trigger the `TasksService` to fetch the tasks. And based on whether the request resolves/rejects we dispatch the appropriate action.
 
 Also, we have added a call to `getTasks()` method within the run block for the app module. This will initialize our store with the data at the beginning of it's life-cycle. 
 
