@@ -1,6 +1,6 @@
 ### Notifying Store Subscribers of State Change
 
-So far we have implemented `getTasks()` to get the data we need from the server and store it in our domain model, i.e. `this._tasks` variable. In practice our stores will have component listening to the change on our domain model. We will implement this mechanism using what we learned about RxJS below.
+So far we have managed to get the data we need from the server and make it available to the store. In practice our stores will have component listening to the change on our domain model. We will implement this mechanism using what we learned about RxJS below.
 
 ```javascript
   ...
