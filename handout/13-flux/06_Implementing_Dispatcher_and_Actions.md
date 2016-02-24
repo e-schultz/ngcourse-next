@@ -7,7 +7,7 @@ Our dispatcher is very simple, let's modify our *app/src/app.ts* file
     .service('dispatcher', Rx.Subject);
 ```
 
-In Chapter 13 - RxJS we have subscribed to Observables with Observers that implemented the `onNext`, `onError` and `onCompleted` methods. Rx.Subject is a combination of an Observer and Observable in one class. It is used here for convenience as you will see later.
+In Chapter 13 - RxJS we have subscribed to Observables with Observers that implemented the `onNext`, `onError` and `onCompleted` methods. [Rx.Subject](http://reactivex.io/documentation/subject.html) is a combination of an Observer and Observable in one class. It is used here for convenience as you will see later.
 
 Now, let add some actions to push onto our dispatcher later. Create a new file in *app/src/actions/task-actions.ts*
 
