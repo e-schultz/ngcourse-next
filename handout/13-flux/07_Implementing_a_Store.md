@@ -7,11 +7,8 @@ Now that we have a dispatcher and actions defined, lets start on our first Store
 
     private _tasks;
 
-    static $inject = ['$log', 'dispatcher'];
-    constructor(
-      private $log,
-      private dispatcher
-      ) {
+    static $inject = ['dispatcher'];
+    constructor(private dispatcher) {
 
     }
   }
@@ -28,11 +25,8 @@ export class TasksStore {
 
   private _tasks;
 
-  static $inject = ['$log', 'dispatcher'];
-  constructor(
-    private $log,
-    private dispatcher
-  ) {
+  static $inject = ['dispatcher'];
+  constructor(private dispatcher) {
       this.registerActionHandlers();
   }
   
