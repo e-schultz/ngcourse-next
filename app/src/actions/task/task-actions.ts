@@ -23,7 +23,7 @@ export class TaskActions {
 
   addTask(newTask) {
     this.tasksService.addTask(newTask)
-      .then(this.getTasks)
+      .then(() => this.getTasks())
       .then(null, error => this.dispatcher.onNext({
         actionType: TASK_ACTIONS.GET_TASKS_RESPONSE_ERROR,
         error: error
@@ -32,7 +32,7 @@ export class TaskActions {
 
   updateTask(task) {
     this.tasksService.updateTask(task)
-      .then(this.getTasks)
+      .then(() => this.getTasks())
       .then(null, error => this.dispatcher.onNext({
         actionType: TASK_ACTIONS.GET_TASKS_RESPONSE_ERROR,
         error: error
@@ -41,7 +41,7 @@ export class TaskActions {
 
   deleteTask(task) {
     this.tasksService.deleteTask(task)
-      .then(this.getTasks)
+      .then(() => this.getTasks())
       .then(null, error => this.dispatcher.onNext({
         actionType: TASK_ACTIONS.GET_TASKS_RESPONSE_ERROR,
         error: error

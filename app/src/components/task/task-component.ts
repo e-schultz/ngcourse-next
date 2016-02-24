@@ -26,7 +26,7 @@ export class TaskComponent {
   };
 
   constructor() { }
-  
+
   delete() {
     this.onDelete({
       data: this.task

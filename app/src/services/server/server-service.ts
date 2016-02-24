@@ -5,7 +5,7 @@ export class ServerService {
   ];
 
   private BASE_URL = 'http://ngcourse.herokuapp.com';
-  
+
   constructor(
     private $http: angular.IHttpService
   ) { }
@@ -22,7 +22,7 @@ export class ServerService {
   public put(path, id, data) {
     return this.$http.put(this.BASE_URL + path + '/' + id, data);
   }
-  
+
   public delete(path, id) {
     return this.$http.delete(this.BASE_URL + path + '/' + id);
   }

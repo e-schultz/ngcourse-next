@@ -11,8 +11,8 @@
   </header>
   <div class="mt4 mb4" ui-view="actionArea"></div>
   <div class="md-col-8 mx-auto rounded tasks-list mb4">
-    <ngc-task ng-repeat="task in ctrl.tasks" 
-      task="task" 
+    <ngc-task ng-repeat="task in ctrl.tasks"
+      task="task"
       user="ctrl.users[task.owner]"
       on-delete="ctrl.delete(task)">
     </ngc-task>

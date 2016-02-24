@@ -3,7 +3,7 @@ import {ServerService} from '../../services';
 const TOKEN_KEY = 'ngcourse-token';
 
 export class AuthenticationService {
-  
+
   constructor(
     private serverService: ServerService,
     private $window: ng.IWindowService) { }
@@ -19,7 +19,7 @@ export class AuthenticationService {
   logout() {
     this.setToken();
   }
-  
+
   getToken() {
     return this.$window.localStorage.getItem(TOKEN_KEY);
   }
