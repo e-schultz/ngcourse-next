@@ -12,13 +12,15 @@ Let's inject this service into out component as shown below:
   ...
 ```
 
-since we will need to dispose of our subscription above we need to keep a reference to it when we subscribe:
+Since we will need to dispose of our subscriptions we need to keep a reference to them when we subscribe:
 
 ```javascript
   ...
-  let tasksSubscription = this.tasksStore.tasksSubject.subscribe(
-    tasks => this._tasks = tasks,
-    error => this._errorMessage = error);
+  let tasksSubscription = tasksStore.tasks
+      .subscribe(tasks => this.tasks = tasks);
+
+  let errorSubscription = tasksStore.error
+      .subscribe({error} => this.errorMessage = error);
   ...
 ```
 
@@ -32,11 +34,12 @@ Finally, let's use `$scope`'s `$on` method to subscribe to the `$destroy` even o
     private tasksStore
     ) {
 
-    let tasksSubscription = this.tasksStore.tasksSubject.subscribe(
-      tasks => this._tasks = tasks,
-      error => this._errorMessage = error);
+    ...
 
-    this.$scope.$on('$destroy', () => tasksSubscription.dispose());
+    this.$scope.$on('$destroy', () =>{
+      tasksSubscription.dispose();
+      errorSubscription.dispose();
+    }
   }
   ...
 ```
