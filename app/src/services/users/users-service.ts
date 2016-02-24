@@ -8,14 +8,14 @@ export interface User {
 }
 
 export class UsersService {
-  
+
   static $inject = [
-    'serverService', 
+    'serverService',
     'authenticationService'
   ];
 
   constructor(
-    private serverService: ServerService, 
+    private serverService: ServerService,
     private authenticationService: AuthenticationService
   ) { }
 
@@ -23,7 +23,7 @@ export class UsersService {
     return this.serverService.get('/api/v1/users');
   }
 
-  addUser(user) { 
+  addUser(user) {
     return this.serverService.post('/api/v1/users', user);
   }
 

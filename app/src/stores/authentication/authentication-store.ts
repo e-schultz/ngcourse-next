@@ -8,24 +8,24 @@ export class AuthenticationStore {
   static $inject = ['dispatcher'];
 
   constructor(private dispatcher: Rx.Subject<any>) {
-    
+
     this.authenticationInfo = new Rx.ReplaySubject<any>();
     this.error = new Rx.ReplaySubject<any>();
     this.registerActionHandlers();
   }
-  
+
   private registerActionHandlers() {
-    
-    this.dispatcher.filter(action => 
+
+    this.dispatcher.filter(action =>
       action.actionType === AUTHENTICATION_ACTIONS.GET_AUTH_INFO)
         .subscribe((action) => this.authenticationInfo.onNext(
           action.authenticationInfo));
 
-    this.dispatcher.filter(action => 
+    this.dispatcher.filter(action =>
       action.actionType === AUTHENTICATION_ACTIONS.GET_AUTH_INFO_ERROR)
         .subscribe(action => this.error.onNext({
-          type: action.actionType, 
-          error: action.error 
+          type: action.actionType,
+          error: action.error
         }));
   }
 

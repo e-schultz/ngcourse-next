@@ -4,7 +4,7 @@ import {RouterService} from '../../services/router/router-service';
 export class TaskAddComponent {
 
   static selector = 'ngcTaskAdd';
-  
+
   static directiveFactory: ng.IDirectiveFactory = () => {
     return {
       restrict: 'E',
@@ -15,12 +15,12 @@ export class TaskAddComponent {
       template: require('./task-add-component.html')
     };
   };
-  
+
   static $inject = [
     'router',
     'tasksActions'
   ];
-  
+
   constructor(
     private router: RouterService,
     private tasksActions: TaskActions

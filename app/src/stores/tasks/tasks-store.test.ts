@@ -4,15 +4,15 @@ import {TASK_ACTIONS} from '../../actions';
 import * as Rx from 'rx';
 
 describe('TasksStore', () => {
-  
+
   let _scheduler;
   let _mockDispatcher;
   let _$log;
-  
+
   let _mockTasks;
-  
+
   beforeEach(() => {
-    
+
     _mockTasks = [{
       _id: 2,
       owner: 'alice',
@@ -26,7 +26,7 @@ describe('TasksStore', () => {
       owner: 'alice',
       description: 'Fix the door handle.'
     }];
-    
+
     _scheduler = new Rx.TestScheduler();
   });
 
@@ -37,7 +37,7 @@ describe('TasksStore', () => {
         actionType: TASK_ACTIONS.GET_TASKS_RESPONSE,
         tasks: _mockTasks
       }));
-    
+
     let tasksStore = new TasksStore(_mockDispatcher);
 
     tasksStore.getTaskById(5).subscribe(
@@ -47,7 +47,7 @@ describe('TasksStore', () => {
         done();
       }
     );
-    
+
     _scheduler.advanceTo(25);
 
   });

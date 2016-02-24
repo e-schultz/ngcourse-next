@@ -10,8 +10,8 @@ import * as angular from 'angular';
 import * as Rx from 'rx';
 
 import {
-  ServerService, 
-  RouterService, 
+  ServerService,
+  RouterService,
   RouterConfig,
   TasksService,
   UsersService,
@@ -19,8 +19,8 @@ import {
 } from './services';
 
 import {
-  TasksStore, 
-  UsersStore, 
+  TasksStore,
+  UsersStore,
   AuthenticationStore
 } from './stores';
 
@@ -34,8 +34,8 @@ import {
 } from './components';
 
 import {
-  TaskActions, 
-  UserActions, 
+  TaskActions,
+  UserActions,
   AuthenticationActions
 } from './actions';
 
@@ -93,12 +93,12 @@ angular.module('ngcourse', [
     MainComponent.directiveFactory)
   .constant('API_BASE_URL', 'http://ngcourse.herokuapp.com')
   .run((
-    koast, 
-    API_BASE_URL, 
-    tasksActions, 
-    usersActions, 
+    koast,
+    API_BASE_URL,
+    tasksActions,
+    usersActions,
     authenticationActions) => {
-      
+
       tasksActions.getTasks();
       usersActions.getUsers();
       koast.init({

@@ -7,9 +7,9 @@ import * as Rx from 'rx';
 
 
 let _$scope;
-let _tasksStoreMock;  
-let _authStoreMock;  
-let _userStoreMock;  
+let _tasksStoreMock;
+let _authStoreMock;
+let _userStoreMock;
 let _routerMock;
 
 let _tasksMock = [{
@@ -26,7 +26,7 @@ let _tasksMock = [{
   done: true
 }];
 
-let _usersMock = { 
+let _usersMock = {
   'alice' : {
     username: 'alice',
     displayName: 'Alice'
@@ -47,27 +47,27 @@ let _authInfoMock = {
 
 describe('TaskListComponent', () => {
 
-  beforeEach(() => { 
+  beforeEach(() => {
     angular.mock.inject($rootScope => {
       _$scope = $rootScope.$new();
     });
-    
+
   });
-  
+
   it('should get data from stores', () => {
-    
+
     let scheduler = new Rx.TestScheduler();
 
     _tasksStoreMock = {
       tasks: scheduler.createHotObservable(
         Rx.ReactiveTest.onNext(200, _tasksMock))
     };
-    
+
     _authStoreMock = {
       authenticationInfo: scheduler.createHotObservable(
         Rx.ReactiveTest.onNext(200, _authInfoMock))
     };
-    
+
     _userStoreMock = {
       usersByUsername: scheduler.createHotObservable(
         Rx.ReactiveTest.onNext(200, _usersMock)),
@@ -76,7 +76,7 @@ describe('TaskListComponent', () => {
     };
 
     let taskListComponent = new TaskListComponent(
-      _$scope, _routerMock, _authStoreMock, 
+      _$scope, _routerMock, _authStoreMock,
       _tasksStoreMock, _userStoreMock, null);
 
     scheduler.advanceTo(220);
