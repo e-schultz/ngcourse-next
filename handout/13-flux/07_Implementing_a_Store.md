@@ -34,7 +34,7 @@ export class TasksStore {
     this.dispatcher.filter(
       action => action.actionType === TASK_ACTIONS.GET_TASKS)
         .subscribe(
-          () => this.getTasks());
+          () => /* Handle action here */);
   }
   
   private getTasks() {
