@@ -22,7 +22,7 @@ export class MainComponent {
       restrict: 'E',
       scope: {},
       template: require('./main-component.html'),
-      controller: MainDirectiveCtrl,
+      controller: MainComponent,
       controllerAs: 'ctrl',
       bindToController: true
     };
