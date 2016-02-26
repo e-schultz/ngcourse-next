@@ -45,3 +45,5 @@ Alternatively, if we were to use `map` instead, we would create a meta stream, i
 ```
 
 This is not very useful in our current example as we would have to subscribe to an observable received from an observable stream. 
+
+[View Example](http://jsbin.com/bufawuxatu/edit?js)
