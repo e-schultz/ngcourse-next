@@ -9,7 +9,7 @@ Create a new file in *app/src/components/task-add/task-add-component.ts*
 export class TaskAddComponent {
 
   static selector = 'ngcTaskAdd';
-  
+
   static directiveFactory: ng.IDirectiveFactory = () => {
     return {
       restrict: 'E',
@@ -59,52 +59,38 @@ and a corresponding *task-add-component.html*
 </div>
 ```
 
-Let's modify our *app/src/actions/actions-constants.ts* file to add our new action.
-
-```javascript
-  export const TASK_ACTIONS = {
-    GET_TASKS: 'GET_TASKS',
-    ADD_TASK: 'ADD_TASK',
-  };
-```
-
 define a new action in *app/src/actions/task-actions.ts*
 
 ```javascript
   ...
   addTask(newTask) {
-    this.dispatcher.onNext({
-      actionType: TASK_ACTIONS.ADD_TASK,
-      newTask: newTask
-    });
-  }
-  ...
-```
-
-and finally modify our *TaskStore* to listen on a new action and call the corresponding `addTask` method.
-
-```javascript
-  ...
-  private registerActionHandlers() {
-    this.dispatcher.filter(
-      (action) => action.actionType === TASK_ACTIONS.GET_TASKS)
-        .subscribe(
-          () => this.getTasks());
-
-    this.dispatcher.filter(
-      (action) => action.actionType === TASK_ACTIONS.ADD_TASK)
-        .subscribe(
-          (action) => this.addTask(action.newTask));
-  }
-
-  private addTask(newTask) {
-    Rx.Observable.fromPromise(
-      this.server.post('/api/v1/tasks', newTask))
-        .subscribe(
-          () => this.getTasks(),
-          error => this.emitError(error));
+    this.tasksService.addTask(newTask)
+      .then(() => this.getTasks())
+      .then(null, error => this.dispatcher.onNext({
+        actionType: TASK_ACTIONS.GET_TASKS_RESPONSE_ERROR,
+        error: error
+      }));
   }
   ...
 ```
 
 Note that we are calling `getTasks()` method from within `addTask()`, which will fetch the new tasks data from the server and emit a change on successful retrieval.
+
+We should also take this time to go and add `addTasks` to *app/src/services/tasks/tasks-service.ts*
+
+```js
+...
+addTask(task) {
+   return this.serverService.post('/api/v1/tasks', task);
+  }
+...
+```  
+
+And also add the ability to post data in *app/src/services/server/server-service.ts*
+```js
+...
+  public post(path, data) {
+   return this.$http.post(`${this.API_BASE_URL}${path}`, data);
+ }
+...
+```

@@ -6,8 +6,9 @@
   "scripts": {
     "postinstall": "npm run typings",
     "typings": "rimraf app/__typings && tsd install && tsd link",
-    "start": "node_modules/.bin/webpack-dev-server --inline --colors --display-error-details --display-cached",
+    "start": "node_modules/.bin/webpack-dev-server --inline --colors --display-error-details --display-cached --host 127.0.0.1",
     "clean": "rimraf app/__build",
+    "book-install": "gitbook install",
     "book-build": "gitbook build",
     "book-dev": "gitbook serve",
     "build": "npm run clean && node_modules/.bin/webpack",

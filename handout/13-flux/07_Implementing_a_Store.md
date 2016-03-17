@@ -29,14 +29,14 @@ export class TasksStore {
   constructor(private dispatcher) {
       this.registerActionHandlers();
   }
-  
+
   private registerActionHandlers() {
     this.dispatcher.filter(
-      action => action.actionType === TASK_ACTIONS.GET_TASKS)
+      action => action.actionType === TASK_ACTIONS.GET_TASKS_RESPONSE)
         .subscribe(
           (tasks) => /* Handle action here */);
   }
-  
+
   private getTasks() {
     // TODO
   }

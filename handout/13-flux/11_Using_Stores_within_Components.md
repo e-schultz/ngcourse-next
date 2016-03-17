@@ -21,9 +21,6 @@ export class TaskListComponent {
 
     tasksStore.tasks
       .subscribe(tasks => this.tasks = tasks);
-
-    tasksStore.error
-      .subscribe({error} => this.errorMessage = error);
   }
 
   ...

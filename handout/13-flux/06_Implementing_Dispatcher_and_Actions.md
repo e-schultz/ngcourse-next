@@ -24,7 +24,7 @@ Now, let add some actions to push onto our dispatcher later. Create a new file i
 
     getTasks() {
       this.dispatcher.onNext({
-        actionType: TASK_ACTIONS.GET_TASKS,
+        actionType: TASK_ACTIONS.GET_TASKS_RESPONSE,
         tasks: []
       })
     }
@@ -34,9 +34,10 @@ Now, let add some actions to push onto our dispatcher later. Create a new file i
 It is a poor practice to use hard-coded strings like `'GET_TASKS'`. Therefore, we extracted our constants into a separate file, *app/src/actions/action-constants.ts* and are using those constants in *task-actions.ts* instead.
 
 ```javascript
-  export const TASK_ACTIONS = {
-    GET_TASKS: 'GET_TASKS',
-  };
+export const TASK_ACTIONS = {
+  GET_TASKS_RESPONSE: 'GET_TASKS_RESPONSE',
+  GET_TASKS_RESPONSE_ERROR: 'GET_TASKS_RESPONSE_ERROR'
+};
 ```
 
 Great! Now we can create our first store.

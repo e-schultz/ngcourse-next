@@ -18,9 +18,6 @@ Since we will need to dispose of our subscriptions we need to keep a reference t
   ...
   let tasksSubscription = tasksStore.tasks
       .subscribe(tasks => this.tasks = tasks);
-
-  let errorSubscription = tasksStore.error
-      .subscribe({error} => this.errorMessage = error);
   ...
 ```
 
@@ -38,7 +35,6 @@ Finally, let's use `$scope`'s `$on` method to subscribe to the `$destroy` even o
 
     this.$scope.$on('$destroy', () =>{
       tasksSubscription.dispose();
-      errorSubscription.dispose();
     }
   }
   ...

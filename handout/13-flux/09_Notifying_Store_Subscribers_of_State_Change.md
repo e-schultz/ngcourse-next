@@ -5,14 +5,14 @@ So far we have managed to get the data we need from the server and make it avail
 ```javascript
 export class TasksStore {
 
-  private _tasks: Rx.ReplaySubject<Task[]>;
+  private _tasks: Rx.ReplaySubject<any[]>;
   private _error: Rx.ReplaySubject<any>;
 
   static $inject = ['dispatcher'];
 
   constructor(private dispatcher: Rx.Subject<any>) {
 
-    this._tasks = new Rx.ReplaySubject<Task[]>(1);
+    this._tasks = new Rx.ReplaySubject<any[]>(1);
     this._error = new Rx.ReplaySubject(1);
 
     this.registerActionHandlers();
@@ -40,13 +40,13 @@ Let go through this code step by step:
 
 3. We have added getters for both `_tasks` and `_error`. These can be used by an observer to subscribe to and be notified whenever a change occurs to our store.
 
-The last step is to notify our observer of changes within the store. For this we modify the action handlers as follows: 
+The last step is to notify our observer of changes within the store. For this we modify the action handlers as follows:
 
 ```javascript
   ...
   private registerActionHandlers() {
     this.dispatcher.filter(
-      action => action.actionType === TASK_ACTIONS.GET_TASKS)
+      action => action.actionType === TASK_ACTIONS.GET_TASKS_RESPONSE)
         .subscribe(action => this._tasks.onNext(action.tasks));
 
     this.dispatcher.filter(
