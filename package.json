@@ -4,7 +4,7 @@
   "description": "Rangle.io NgCourse-Next",
   "license": "MIT",
   "scripts": {
-    "postinstall": "npm run typings; gitbook install",
+    "postinstall": "npm run typings",
     "typings": "rimraf app/__typings && tsd install && tsd link",
     "start": "node_modules/.bin/webpack-dev-server --inline --colors --display-error-details --display-cached",
     "clean": "rimraf app/__build",
@@ -43,7 +43,6 @@
     "css-loader": "0.21.0",
     "extract-text-webpack-plugin": "0.9.0",
     "file-loader": "0.8.4",
-    "gitbook-cli": "1.0.1",
     "gitbook-plugin-jsbin": "0.0.12",
     "gitbook-plugin-versions": "2.1.1",
     "gulp": "3.9.0",
